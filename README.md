@@ -52,7 +52,7 @@ https://github.com/user-attachments/assets/8f99e641-9ff6-47f6-8195-0f6cbed05d2e
 
 
 
-**更换TTS、添加ASR、更换人物.....coming soon**
+**添加ASR、更换人物.....coming soon**
 
 
    
