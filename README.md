@@ -32,6 +32,25 @@ GoogleDriver https://drive.google.com/drive/folders/1FOC_MD6wdogyyX_7V1d4NDIO7P9
    ![image](https://github.com/user-attachments/assets/0732e10d-8bca-4b92-8e7f-399b8a555f30)
 
 7. 至此，基础版的LiveTalking正式部署完成
+****************************************************************************************************************************************************************************
+8. 接入cosyvoice
+   本地部署了cosyvoice2，在本地运行server服务后，服务器端需要访问本地的地址，因此使用Ngrok做了内网穿透
+   ![image](https://github.com/user-attachments/assets/8b4ab192-3fcb-44c9-80e6-921b3ac94084)
+   可以看到已经调用了inference_zero_shot进行推理，后端正常运行，但是前端得不到反馈，人物无法说话，具体原因还未找到。。。。。。
+   
+   **转而在同一台服务器下重新部署cosyvoice2**
+   部署过程参照官方文档：https://github.com/FunAudioLLM/CosyVoice
+   部署完成后，进入runtime/python/fastapi文件，运行如下指令：
+   python server.py --model_dir ../../../pretrained_models/CosyVoice2-0.5B
+   成功开启服务，默认调用zero_shot进行推理
+   ![image](https://github.com/user-attachments/assets/32475e6a-9669-4505-8467-883cec713ffa)
+
+9. 启动数字人服务，运行如下指令：
+    python app.py --transport webrtc --model wav2lip --avatar_id wav2lip256_avatar1 --tts cosyvoice --TTS_SERVER http://0.0.0.1:50000 --REF_FILE ref.wav --REF_TEXT xxx
+最终效果：
+https://github.com/user-attachments/assets/8f99e641-9ff6-47f6-8195-0f6cbed05d2e
+
+
 
 **更换TTS、添加ASR、更换人物.....coming soon**
 
